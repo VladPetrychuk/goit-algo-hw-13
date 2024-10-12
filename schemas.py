@@ -7,7 +7,7 @@ class ContactBase(BaseModel):
     last_name: str
     email: str
     phone: str
-    birthday: date  # Використання date для збереження дати народження
+    birthday: date
     additional_info: str
 
 class ContactUpdate(BaseModel):
@@ -16,7 +16,6 @@ class ContactUpdate(BaseModel):
     email: Optional[str] = None
     phone: Optional[str] = None
     additional_info: Optional[str] = None
-
 
 class ContactCreate(ContactBase):
     pass
@@ -28,7 +27,6 @@ class Contact(ContactBase):
     class Config:
         from_attributes = True
 
-
 class UserBase(BaseModel):
     email: str
 
@@ -37,6 +35,8 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+    is_verified: bool
+    avatar_url: Optional[str] = None
 
     class Config:
         from_attributes = True
